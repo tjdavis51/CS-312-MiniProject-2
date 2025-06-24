@@ -1,0 +1,40 @@
+<%- include('partials/header') %>
+
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <h1 class="mb-4">Check a Crypto Price</h1>
+
+    <!-- Form -->
+    <form action="/check" method="POST" class="mb-4">
+      <div class="input-group">
+        <input
+          type="text"
+          name="symbol"
+          class="form-control"
+          placeholder="Enter coin name"
+          required
+        />
+        <button class="btn btn-primary" type="submit">Check</button>
+      </div>
+    </form>
+
+    <!-- Error -->
+    <% if (error) { %>
+      <div class="alert alert-danger"><%= error %></div>
+    <% } %>
+
+    <!-- Result -->
+    <% if (priceData) { %>
+      <div class="card mb-3">
+        <div class="card-body">
+          <h2 class="card-title text-capitalize"><%= priceData.id %></h2>
+          <p class="card-text">
+            Current Price: <strong>$<%= priceData.usd %></strong>
+          </p>
+        </div>
+      </div>
+    <% } %>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
